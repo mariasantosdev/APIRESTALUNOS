@@ -1,0 +1,2 @@
+use apialuno;
+show tables;
