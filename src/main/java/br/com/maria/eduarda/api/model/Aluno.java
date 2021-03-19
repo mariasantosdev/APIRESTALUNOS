@@ -5,6 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+
 @Entity
 public class Aluno {
 
@@ -13,6 +14,7 @@ public class Aluno {
 	private Long id;
 	
 	private String nome;
+	
 	
 	private int idade;
 	
