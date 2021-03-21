@@ -3,7 +3,6 @@ package br.com.maria.eduarda.api.controller;
 import java.util.List;
 import java.util.Optional;
 
-import javax.transaction.Transactional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,8 +18,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+
 import br.com.maria.eduarda.api.model.Aluno;
 import br.com.maria.eduarda.api.repository.AlunoRepository;
+import br.com.maria.eduarda.api.service.CrudAlunoService;
 
 @RestController
 @RequestMapping("/aluno")
@@ -29,6 +30,8 @@ public class AlunoController {
 	@Autowired
 	private AlunoRepository alunoRepository;
 	
+	@Autowired
+	private CrudAlunoService crudAlunoService;
 	
 																																																																																																																																			
 	
@@ -51,9 +54,9 @@ public class AlunoController {
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
 	public Aluno adicionarNovoAluno(@Valid @RequestBody Aluno aluno) {
-		return alunoRepository.save(aluno);
+		return crudAlunoService.salvar(aluno);
 	}
-	
+
 	
 	@PutMapping("/{alunoId}")
 	public ResponseEntity<Aluno> atualizar(@Valid @PathVariable Long alunoId,
@@ -71,15 +74,14 @@ public class AlunoController {
 	
 	@DeleteMapping("/{alunoId}")
 	public ResponseEntity<Void> remover(@PathVariable Long alunoId) {
-		if (!alunoRepository.existsById(alunoId)) {
-			return ResponseEntity.notFound().build();
-		}
+	
 		
-		alunoRepository.deleteById(alunoId);
+		crudAlunoService.excluir(alunoId);
 		
 		return ResponseEntity.noContent().build();
 	}
 	
+
 
 	
 	
