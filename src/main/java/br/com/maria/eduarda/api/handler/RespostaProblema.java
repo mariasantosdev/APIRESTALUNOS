@@ -1,59 +1,33 @@
 package br.com.maria.eduarda.api.handler;
 
+import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 
+import lombok.Builder;
+import lombok.Data;
+import lombok.Getter;
+
+@Data
+@JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class RespostaProblema {
 
-	private Integer status;
-	private OffsetDateTime dataHora;
-	private String titulo;
-	private List<Campo> campos;
+    private int status;
 
-	public static class Campo {
+    private String titulo;
 
-		private String nome;
-		private String mensagem;
+    private LocalDateTime timestamp;
 
-		public Campo(String nome, String mensagem) {
-			super();
-			this.nome = nome;
-			this.mensagem = mensagem;
-		}
+    private String detalhes;
 
-		public String getNome() {
-			return nome;
-		}
-
-		public void setNome(String nome) {
-			this.nome = nome;
-		}
-
-		public String getMensagem() {
-			return mensagem;
-		}
-
-		public void setMensagem(String mensagem) {
-			this.mensagem = mensagem;
-		}
-
-	}
-
-	public Integer getStatus() {
+    public int getStatus() {
 		return status;
 	}
 
-	public void setStatus(Integer status) {
+	public void setStatus(int status) {
 		this.status = status;
-	}
-
-	public OffsetDateTime getDataHora() {
-		return dataHora;
-	}
-
-	public void setDataHora(OffsetDateTime dataHora) {
-		this.dataHora = dataHora;
 	}
 
 	public String getTitulo() {
@@ -64,16 +38,40 @@ public class RespostaProblema {
 		this.titulo = titulo;
 	}
 
-	public List<Campo> getCampos() {
-		return campos;
+	public LocalDateTime getTimestamp() {
+		return timestamp;
 	}
 
-	public void setCampos(List<Campo> campos) {
-		this.campos = campos;
+	public void setTimestamp(LocalDateTime timestamp) {
+		this.timestamp = timestamp;
 	}
-	
-	
 
+	public String getDetalhes() {
+		return detalhes;
+	}
 
+	public void setDetalhes(String detalhes) {
+		this.detalhes = detalhes;
+	}
 
+	public List<Object> getObjects() {
+		return objects;
+	}
+
+	public void setObjects(List<Object> objects) {
+		this.objects = objects;
+	}
+
+	private List<Object> objects;
+
+    @Getter
+    @Builder
+    public static class Object {
+
+        private String name;
+
+        private String userMessage;
+
+    }
 }
+
