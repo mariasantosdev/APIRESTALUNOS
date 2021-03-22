@@ -1,10 +1,11 @@
 package br.com.maria.eduarda.api.service;
 
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
-
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -34,6 +35,8 @@ public class CrudAlunoService {
 		
 		return ResponseEntity.notFound().build();
 	}
+	
+	
 	
 	public ResponseEntity<Aluno> atualizar(Long alunoId, Aluno aluno){
 		if (!alunoRepository.existsById(alunoId)) {

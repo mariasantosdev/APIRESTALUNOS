@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 import br.com.maria.eduarda.api.model.Aluno;
-import br.com.maria.eduarda.api.repository.AlunoRepository;
 import br.com.maria.eduarda.api.service.CrudAlunoService;
 
 @RestController
