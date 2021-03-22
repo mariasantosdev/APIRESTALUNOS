@@ -1,15 +1,14 @@
 package br.com.maria.eduarda.api.service;
 
+
 import java.util.List;
 import java.util.Optional;
 
-import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+
 
 import br.com.maria.eduarda.api.model.Aluno;
 import br.com.maria.eduarda.api.repository.AlunoRepository;
@@ -36,6 +35,22 @@ public class CrudAlunoService {
 		return ResponseEntity.notFound().build();
 	}
 	
+	public ResponseEntity<Aluno> atualizar(Long alunoId, Aluno aluno){
+		if (!alunoRepository.existsById(alunoId)) {
+			return ResponseEntity.notFound().build();
+		}
+		
+		aluno.setId(alunoId);
+		alunoRepository.save(aluno);
+		
+		return ResponseEntity.ok(aluno);
+	
+	}
+	
+	
+	public List<Aluno> listar() {
+		return alunoRepository.findAll();
+	}
 	
 	
 		

@@ -1,7 +1,7 @@
 package br.com.maria.eduarda.api.controller;
 
 import java.util.List;
-import java.util.Optional;
+
 
 import javax.validation.Valid;
 
@@ -27,8 +27,6 @@ import br.com.maria.eduarda.api.service.CrudAlunoService;
 @RequestMapping("/aluno")
 public class AlunoController {
 
-	@Autowired
-	private AlunoRepository alunoRepository;
 	
 	@Autowired
 	private CrudAlunoService crudAlunoService;
@@ -37,7 +35,7 @@ public class AlunoController {
 	
 	@GetMapping
 	public List<Aluno> listar() {
-		return alunoRepository.findAll();
+		return crudAlunoService.listar();
 	}
 	
 	@GetMapping("/{alunoId}")
@@ -56,16 +54,9 @@ public class AlunoController {
 	@PutMapping("/{alunoId}")
 	public ResponseEntity<Aluno> atualizar(@Valid @PathVariable Long alunoId,
 			@RequestBody Aluno aluno) {
-		
-		if (!alunoRepository.existsById(alunoId)) {
-			return ResponseEntity.notFound().build();
-		}
-		
-		aluno.setId(alunoId);
-		alunoRepository.save(aluno);
-		
-		return ResponseEntity.ok(aluno);
+		return crudAlunoService.atualizar(alunoId, aluno);
 	}
+	
 	
 	@DeleteMapping("/{alunoId}")
 	public ResponseEntity<Void> remover(@PathVariable Long alunoId) {
