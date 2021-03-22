@@ -20,8 +20,7 @@ public class Aluno {
 	@Size(max = 70)
 	private String nome;
 	
-	@NotBlank
-	@Size(max = 3)
+
 	private int idade;
 	
 

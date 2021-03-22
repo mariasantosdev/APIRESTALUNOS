@@ -1,11 +1,9 @@
 package br.com.maria.eduarda.api.service;
 
 
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -22,7 +20,7 @@ public class CrudAlunoService {
 	
 	
 	public Aluno salvar(Aluno aluno) {
-		return alunoRepository.save(aluno);
+	return alunoRepository.save(aluno);
 	}	
 	
 	
@@ -30,7 +28,7 @@ public class CrudAlunoService {
 		Optional<Aluno> aluno = alunoRepository.findById(alunoId);
 		
 		if (aluno.isPresent()) {
-			return ResponseEntity.ok(aluno.get());
+		return ResponseEntity.ok(aluno.get());
 		}
 		
 		return ResponseEntity.notFound().build();
@@ -40,7 +38,7 @@ public class CrudAlunoService {
 	
 	public ResponseEntity<Aluno> atualizar(Long alunoId, Aluno aluno){
 		if (!alunoRepository.existsById(alunoId)) {
-			return ResponseEntity.notFound().build();
+		return ResponseEntity.notFound().build();
 		}
 		
 		aluno.setId(alunoId);
