@@ -36,19 +36,14 @@ public class AlunoController {
 																																																																																																																																			
 	
 	@GetMapping
-	public List<Aluno> listarTodosAlunos() {
+	public List<Aluno> listar() {
 		return alunoRepository.findAll();
 	}
 	
 	@GetMapping("/{alunoId}")
 	public ResponseEntity<Aluno> RecuperaAlunosPorId(@PathVariable Long alunoId) {
-		Optional<Aluno> aluno = alunoRepository.findById(alunoId);
+		return crudAlunoService.RecuperaAlunosPorId(alunoId);
 		
-		if (aluno.isPresent()) {
-			return ResponseEntity.ok(aluno.get());
-		}
-		
-		return ResponseEntity.notFound().build();
 	}
 	
 	@PostMapping
