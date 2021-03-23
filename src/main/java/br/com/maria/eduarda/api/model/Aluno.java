@@ -7,23 +7,18 @@ import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
-
-
 @Entity
 public class Aluno {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	@NotBlank
 	@Size(max = 70)
 	private String nome;
-	
 
 	private int idade;
-	
-
 
 	public Long getId() {
 		return id;
@@ -33,8 +28,6 @@ public class Aluno {
 		this.id = id;
 	}
 
-	
-	
 	public String getNome() {
 		return nome;
 	}
@@ -50,7 +43,7 @@ public class Aluno {
 	public void setIdade(int idade) {
 		this.idade = idade;
 	}
-	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -75,7 +68,5 @@ public class Aluno {
 			return false;
 		return true;
 	}
-
-
 
 }

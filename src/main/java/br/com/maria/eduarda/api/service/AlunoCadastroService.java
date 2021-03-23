@@ -1,11 +1,8 @@
 package br.com.maria.eduarda.api.service;
 
-
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import br.com.maria.eduarda.api.handler.RecursoNaoEncontradoException;
@@ -13,53 +10,34 @@ import br.com.maria.eduarda.api.model.Aluno;
 import br.com.maria.eduarda.api.repository.AlunoRepository;
 
 @Service
-public class CrudAlunoService {
+public class AlunoCadastroService {
 
 	@Autowired
 	private AlunoRepository alunoRepository;
-	
-	
-	
+
 	public Aluno salvar(Aluno aluno) {
-	return alunoRepository.save(aluno);
-	}	
-	
-	
-	public Aluno RecuperaAlunosPorId(Long alunoId) {
+		return alunoRepository.save(aluno);
+	}
+
+	public Aluno recuperaAlunosPorId(Long alunoId) {
 		return this.alunoRepository.findById(alunoId)
 				.orElseThrow(() -> new RecursoNaoEncontradoException("Pessoa não encontrada."));
-		
 	}
-	
-	
-	public ResponseEntity<Aluno> atualizar(Long alunoId, Aluno aluno){
-		if (!alunoRepository.existsById(alunoId)) {
-		return ResponseEntity.notFound().build();
-		}
-		
-		aluno.setId(alunoId);
-		alunoRepository.save(aluno);
-		
-		return ResponseEntity.ok(aluno);
-	
+
+	public Aluno atualizar(Long alunoId, Aluno alunoAtualizado) {
+		Aluno aluno = recuperaAlunosPorId(alunoId);
+		aluno.setNome(alunoAtualizado.getNome());
+		return salvar(aluno);
 	}
-	
-	
+
 	public List<Aluno> listar() {
 		return alunoRepository.findAll();
 	}
-	
-	
-		
+
 	public void excluir(Long alunoId) {
+		Aluno aluno = recuperaAlunosPorId(alunoId);
 		alunoRepository.deleteById(alunoId);
-	
-	
+
 	}
-	
-	
-	
 
-
-	
 }
