@@ -23,4 +23,4 @@ public class Aluno {
 	@Size(max = 70)
 	private String nome;
 	private int idade;
-					}
+}

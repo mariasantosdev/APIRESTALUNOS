@@ -15,7 +15,8 @@ public class AlunoCadastroService {
 	@Autowired
 	private AlunoRepository alunoRepository;
 
-	public Aluno salvar(Aluno aluno) {
+	public Aluno salvar(Aluno aluno)
+	{
 		return alunoRepository.save(aluno);
 	}
 
@@ -40,5 +41,4 @@ public class AlunoCadastroService {
 		alunoRepository.deleteById(alunoId);
 
 	}
-
 	}
