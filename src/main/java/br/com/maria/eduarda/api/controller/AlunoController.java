@@ -32,8 +32,8 @@ public class AlunoController {
 	}
 
 	@GetMapping("/{alunoId}")
-	public Aluno recuperaAlunosPorId(@PathVariable Long alunoId) {
-		Aluno aluno = this.alunoCadastroService.recuperaAlunosPorId(alunoId);
+	public Aluno recuperaAlunoPorId(@PathVariable Long alunoId) {
+		Aluno aluno = this.alunoCadastroService.recuperaAlunoPorId(alunoId);
 		return aluno;
 	}
 
@@ -46,12 +46,10 @@ public class AlunoController {
 	@PutMapping("/{alunoId}")
 	public Aluno atualizar(@Valid @PathVariable Long alunoId, @RequestBody Aluno aluno) {
 		return alunoCadastroService.atualizar(alunoId, aluno);
-
 	}
 
 	@DeleteMapping("/{alunoId}")
 	public void remover(@PathVariable Long alunoId) {
 		alunoCadastroService.excluir(alunoId);
 	}
-
-	}
+}

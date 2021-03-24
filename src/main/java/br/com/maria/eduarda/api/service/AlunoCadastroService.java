@@ -19,14 +19,15 @@ public class AlunoCadastroService {
 		return alunoRepository.save(aluno);
 	}
 
-	public Aluno recuperaAlunosPorId(Long alunoId) {
+	public Aluno recuperaAlunoPorId(Long alunoId) {
 		return this.alunoRepository.findById(alunoId)
 				.orElseThrow(() -> new RecursoNaoEncontradoException("Pessoa não encontrada."));
 	}
 
 	public Aluno atualizar(Long alunoId, Aluno alunoAtualizado) {
-		Aluno aluno = recuperaAlunosPorId(alunoId);
+		Aluno aluno = recuperaAlunoPorId(alunoId);
 		aluno.setNome(alunoAtualizado.getNome());
+		aluno.setIdade(alunoAtualizado.getIdade());
 		return salvar(aluno);
 	}
 
@@ -35,7 +36,7 @@ public class AlunoCadastroService {
 	}
 
 	public void excluir(Long alunoId) {
-		Aluno aluno = recuperaAlunosPorId(alunoId);
+		Aluno aluno = recuperaAlunoPorId(alunoId);
 		alunoRepository.deleteById(alunoId);
 
 	}

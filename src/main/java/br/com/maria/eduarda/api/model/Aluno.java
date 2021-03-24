@@ -13,22 +13,14 @@ import lombok.Setter;
 
 @Entity
 @EqualsAndHashCode
+@Getter
+@Setter
 public class Aluno {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Getter
-	@Setter
 	private Long id;
-
 	@NotBlank
 	@Size(max = 70)
-	@Getter
-	@Setter
 	private String nome;
-	@Getter
-	@Setter
 	private int idade;
-
-
-
-}
+					}
