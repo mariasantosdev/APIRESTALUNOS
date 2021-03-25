@@ -32,13 +32,13 @@ public class AlunoCadastroService {
 		return salvar(aluno);
 	}
 
-	public List<Aluno> listar() {
+	public List<Aluno> listar()
+	{
 		return alunoRepository.findAll();
 	}
 
 	public void excluir(Long alunoId) {
 		Aluno aluno = recuperaAlunoPorId(alunoId);
 		alunoRepository.deleteById(alunoId);
-
 	}
-	}
+}

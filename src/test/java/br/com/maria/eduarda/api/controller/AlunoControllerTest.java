@@ -30,16 +30,13 @@ public class AlunoControllerTest {
     @Autowired
     private AlunoRepository  alunoRepository;
 
-    @Autowired
-    private AlunoCadastroService  alunoCadastroService;
 
     @Test
     public void deveRetornarCreated_ParaRegistro() throws Exception {
-        URI uri = new URI("/aluno");
         String json = "{\"nome\":\"Fabiana\",\"idade\":\"18\"}";
         mockMvc
                 .perform(MockMvcRequestBuilders
-                        .post(uri)
+                        .post("/aluno")
                         .content(json)
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers
@@ -49,11 +46,10 @@ public class AlunoControllerTest {
 
     @Test
     public void deveRetornarBadRequest_PorNaoTerRegistroObrigatorio() throws Exception {
-        URI uri = new URI("/aluno");
         String json = "{\"nome\":\"\",\"idade\":\"18\"}";
         mockMvc
                 .perform(MockMvcRequestBuilders
-                        .post(uri)
+                        .post("/aluno")
                         .content(json)
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers
@@ -63,10 +59,9 @@ public class AlunoControllerTest {
 
     @Test
     public void deveDevolverOk_ParaRegistrosExibido() throws Exception {
-        URI uri = new URI("/aluno");
         mockMvc
                 .perform(MockMvcRequestBuilders
-                        .get(uri)
+                        .get("/aluno")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers
                         .status()
@@ -105,12 +100,11 @@ public class AlunoControllerTest {
                 .andExpect(MockMvcResultMatchers
                         .status()
                         .is(200))
-                    .andExpect(content().json("{\"nome\":\"Gustavo\",\"idade\":18}"));
+                .andExpect(content().json(json));
     }
 
     @Test
     public void devolverNotFound_RegistroNaoEncontrado() throws Exception {
-
         Aluno aluno = new Aluno();
         aluno.setId(11L);
 

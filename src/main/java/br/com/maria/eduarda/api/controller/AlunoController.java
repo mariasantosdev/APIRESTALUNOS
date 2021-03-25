@@ -33,8 +33,7 @@ public class AlunoController {
 
 	@GetMapping("/{alunoId}")
 	public Aluno recuperaAlunoPorId(@PathVariable Long alunoId) {
-		Aluno aluno = this.alunoCadastroService.recuperaAlunoPorId(alunoId);
-		return aluno;
+		return	this.alunoCadastroService.recuperaAlunoPorId(alunoId);
 	}
 
 	@PostMapping
